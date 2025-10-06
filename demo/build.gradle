@@ -1,0 +1,66 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.7'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'com.h2database:h2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation 'org.camunda.spin:camunda-spin-core:1.21.0'
+    implementation 'org.camunda.spin:camunda-spin-dataformat-json-jackson:1.21.0'
+    implementation 'org.camunda.bpm:camunda-engine-plugin-spin:7.21.0'
+
+        // Camunda 7 Starter
+    implementation('org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.21.0') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-core'
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+    }
+    implementation('org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-rest:7.21.0') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-core'
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+    }
+    implementation('org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter-webapp:7.21.0') {
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-core'
+        exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+    }
+
+    implementation 'org.codehaus.groovy:groovy-all:3.0.21'
+}
+
+// Sicherheitsnetz, falls später wieder etwas com.sun.xml.bind reinzieht
+configurations.all {
+    exclude group: 'com.sun.xml.bind', module: 'jaxb-core'
+    exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+/*
+Nur falls du kurzfristig bauen musst und es weiterhin knallt, kannst du zusätzlich noch Duplikate im Boot Jar ignorieren.
+Empfehlung bleibt, die Excludes oben zu nutzen.
+
+import org.gradle.api.file.DuplicatesStrategy
+tasks.named('bootJar') {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+*/

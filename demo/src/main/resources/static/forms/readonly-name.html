@@ -1,0 +1,48 @@
+<form role="form" name="displayForm" class="form-horizontal">
+  <!-- Last Name -->
+  <div class="form-group">
+    <label class="control-label col-sm-3">Last Name</label>
+    <div class="col-sm-9">
+      <p class="form-control-static">{{ lastname }}</p>
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group">
+    <label class="control-label col-sm-3">Email</label>
+    <div class="col-sm-9">
+      <p class="form-control-static">{{ email }}</p>
+    </div>
+  </div>
+
+  <!-- AOPI Response -->
+  <div class="form-group">
+    <label class="control-label col-sm-3">AOPI Response</label>
+    <div class="col-sm-9">
+      <pre class="form-control-static" style="white-space: pre-wrap;">{{ aopiResponse }}</pre>
+    </div>
+  </div>
+
+  <!-- Weiter Button -->
+  <div class="form-group">
+    <div class="col-sm-9 col-sm-offset-3">
+      <button type="submit" class="btn btn-primary">Weiter</button>
+    </div>
+  </div>
+
+  <script cam-script type="text/form-script">
+    var vars = ["lastname", "email", "aopiResponse"];
+
+    camForm.on("form-loaded", function() {
+      vars.forEach(function(v) {
+        camForm.variableManager.fetchVariable(v);
+      });
+    });
+
+    camForm.on("variables-fetched", function() {
+      $scope.lastname = camForm.variableManager.variable("lastname")?.value;
+      $scope.email = camForm.variableManager.variable("email")?.value;
+      $scope.aopiResponse = camForm.variableManager.variable("aopiResponse")?.value;
+    });
+  </script>
+</form>

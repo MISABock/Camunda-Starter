@@ -27,6 +27,8 @@ dependencies {
     implementation 'org.camunda.spin:camunda-spin-core:1.21.0'
     implementation 'org.camunda.spin:camunda-spin-dataformat-json-jackson:1.21.0'
     implementation 'org.camunda.bpm:camunda-engine-plugin-spin:7.21.0'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
 
         // Camunda 7 Starter
     implementation('org.camunda.bpm.springboot:camunda-bpm-spring-boot-starter:7.21.0') {

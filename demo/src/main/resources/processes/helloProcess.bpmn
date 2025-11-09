@@ -7,13 +7,8 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_02qowjf</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:userTask id="Activity_063c4ke" name="give name" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="firstname" label="First Name" type="string" />
-          <camunda:formField id="lastname" label="Last Name" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_063c4ke" name="give name" camunda:formRef="userInput" camunda:formRefBinding="latest" camunda:assignee="demo">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_02qowjf</bpmn:incoming>
       <bpmn:outgoing>Flow_0ycetu3</bpmn:outgoing>
     </bpmn:userTask>
@@ -24,15 +19,8 @@
     <bpmn:endEvent id="Event_11vsdok">
       <bpmn:incoming>Flow_1ui6uf1</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0see6ua" name="give name" camunda:assignee="demo">
-      <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="firstname" label="firstname" type="string" defaultValue="" />
-          <camunda:formField id="lastname" label="lastname" type="string" defaultValue="" />
-          <camunda:formField id="email" label="email" type="string" />
-          <camunda:formField id="joke" label="joke" type="string" />
-        </camunda:formData>
-      </bpmn:extensionElements>
+    <bpmn:userTask id="Activity_0see6ua" name="give name" camunda:formRef="showUser" camunda:formRefBinding="latest" camunda:assignee="demo">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_077a1a5</bpmn:incoming>
       <bpmn:outgoing>Flow_1ui6uf1</bpmn:outgoing>
     </bpmn:userTask>

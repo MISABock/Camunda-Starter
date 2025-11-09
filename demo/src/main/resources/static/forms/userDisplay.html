@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>User Task Ansicht</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Benutzerdaten</h2>
+
+  <p><span class="label">Vorname:</span> <span id="firstname"></span></p>
+  <p><span class="label">Nachname:</span> <span id="lastname"></span></p>
+  <p><span class="label">Email:</span> <span id="email"></span></p>
+  <p><span class="label">Joke:</span><br><span id="joke"></span></p>
+
+  <button id="btnComplete">Weiter</button>
+
+  <script>
+    // 1. Task-ID aus URL ziehen
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    // 2. Variablen laden
+    async function loadVariables() {
+      const res = await fetch(`/engine-rest/task/${taskId}/form-variables`);
+      const data = await res.json();
+
+      document.getElementById('firstname').textContent = data.firstname?.value || '';
+      document.getElementById('lastname').textContent  = data.lastname?.value  || '';
+      document.getElementById('email').textContent     = data.email?.value     || '';
+      document.getElementById('joke').textContent      = data.joke?.value      || '';
+    }
+
+    // 3. Task abschliessen
+    async function completeTask() {
+      await fetch(`/engine-rest/task/${taskId}/complete`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ variables: {} })
+      });
+      alert('Task abgeschlossen.');
+    }
+
+    document.getElementById('btnComplete').addEventListener('click', completeTask);
+    loadVariables(); // direkt ausführen
+  </script>
+</body>
+</html>

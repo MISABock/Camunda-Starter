@@ -1,0 +1,45 @@
+{
+  "components": [
+    {
+      "label": "Vorname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0agpgf7",
+        "columns": null
+      },
+      "id": "Field_06b5ymx",
+      "key": "firstname",
+      "defaultValue": "Micha"
+    },
+    {
+      "label": "Nachname",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ebgqr7",
+        "columns": 3
+      },
+      "id": "Field_1yhxkvs",
+      "key": "lastname",
+      "defaultValue": "BB"
+    },
+    {
+      "label": "Number",
+      "type": "number",
+      "layout": {
+        "row": "Row_168yvcn",
+        "columns": null
+      },
+      "id": "Field_0od0f3y",
+      "key": "number_xpwlc"
+    }
+  ],
+  "type": "default",
+  "id": "userInput",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

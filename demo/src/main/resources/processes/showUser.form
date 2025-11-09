@@ -1,0 +1,33 @@
+{
+  "components": [
+    {
+      "label": "E-Mail",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1h60tfy",
+        "columns": 4
+      },
+      "id": "Field_1m3g5rv",
+      "key": "email"
+    },
+    {
+      "label": "Joke",
+      "type": "textarea",
+      "layout": {
+        "row": "Row_0jih5uj",
+        "columns": null
+      },
+      "id": "Field_1x84uis",
+      "key": "joke"
+    }
+  ],
+  "type": "default",
+  "id": "showUser",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.39.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.23.0",
+  "schemaVersion": 19
+}

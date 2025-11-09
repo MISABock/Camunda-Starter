@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>User Task: Name erfassen</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    label { display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Bitte Namen eingeben</h2>
+
+  <label>Vorname:</label>
+  <input type="text" id="firstname">
+
+  <label>Nachname:</label>
+  <input type="text" id="lastname">
+
+  <br><br>
+  <button id="btnComplete">Weiter</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const taskId = params.get('taskId');
+
+    async function completeTask() {
+      const firstname = document.getElementById('firstname').value;
+      const lastname  = document.getElementById('lastname').value;
+
+      await fetch(`/engine-rest/task/${taskId}/complete`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          variables: {
+            firstname: { value: firstname, type: 'String' },
+            lastname:  { value: lastname, type: 'String' }
+          }
+        })
+      });
+
+      alert('Task abgeschlossen.');
+    }
+
+    document.getElementById('btnComplete').addEventListener('click', completeTask);
+  </script>
+</body>
+</html>
